@@ -1,4 +1,7 @@
 import Head from 'next/head';
+import Link from 'next/link';
+
+import { blogPosts } from '../lib/data';
 
 export default function Home() {
   return (
@@ -14,6 +17,22 @@ export default function Home() {
           My Blog
         </h1>
       </main>
+
+      <div>
+        {
+          blogPosts.map((item) => (
+            <div key={item.slug}>
+              <div>
+                <Link href={`/blog/${item.slug}`}>
+                {item.title}
+                </Link>
+              </div>
+              <div>{item.date}</div>
+              <div>{item.content}</div>
+            </div>
+          ))
+        }
+      </div>
     </div>
   )
 }
